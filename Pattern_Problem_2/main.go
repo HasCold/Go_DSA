@@ -23,9 +23,10 @@ func main() {
 	syncChan3 := make(chan struct{})
 	syncChan4 := make(chan struct{})
 	syncChan5 := make(chan struct{})
+	syncChan6 := make(chan struct{})
 	wg := &sync.WaitGroup{}
 
-	wg.Add(7) // I will tell waitGroups that Hey I am adding three goroutines
+	wg.Add(8) // I will tell waitGroups that Hey I am adding three goroutines
 
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
@@ -172,23 +173,66 @@ func main() {
 			fmt.Println()
 		}
 
-		for i := 0; i <= num-2; i++ {
+		for i := 0; i < num-1; i++ {
 			for j := 0; j < i+1; j++ {
 				fmt.Print(" ")
 			}
 
-			for j := i; j == i; j++ {
+			fmt.Print("*")
+
+			if i != num-2 {
+				for j := 0; j < 2*(num-i)-5; j++ {
+					fmt.Print(" ")
+				}
 				fmt.Print("*")
 			}
 
-			for j := num; j > ((2 * i) - 1); j-- { // Formula to generate the odd number (2 * i) + 1
-				fmt.Print("+")
+			fmt.Println()
+		}
+
+		syncChan6 <- struct{}{}
+	}(wg)
+
+	go func(wg *sync.WaitGroup) { // wg points or pointer to the sync.WaitGroup Struct
+		defer wg.Done()
+		<-syncChan6
+
+		fmt.Println("---------------- Butterfly Pattern ---------------------")
+		for i := 0; i < num; i++ {
+			for j := 0; j <= i; j++ {
+				fmt.Print("*", " ")
 			}
 
-			if i != num-2 {
-				for j := i; j == i; j++ {
-					fmt.Print("*")
-				}
+			for j := num; j > i+1; j-- {
+				fmt.Print("  ")
+			}
+
+			for j := num; j > i+1; j-- {
+				fmt.Print(" ", " ")
+			}
+
+			for j := 0; j <= i; j++ {
+				fmt.Print("*", " ")
+			}
+
+			fmt.Println()
+		}
+
+		for i := 0; i < num; i++ {
+			for j := num; j > i; j-- {
+				fmt.Print("*", " ")
+			}
+
+			for j := 0; j < i; j++ {
+				fmt.Print(" ", " ")
+			}
+
+			for j := 0; j < i; j++ {
+				fmt.Print(" ", " ")
+			}
+
+			for j := num; j > i; j-- {
+				fmt.Print("*", " ")
 			}
 
 			fmt.Println()
