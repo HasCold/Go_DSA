@@ -160,7 +160,7 @@ func main() {
 				fmt.Print("*")
 			}
 
-			for j := 1; j <= ((2 * i) - 1); j++ {
+			for j := 1; j <= ((2 * i) - 1); j++ { // Formula to generate the odd number (2 * i) - 1
 				fmt.Print(" ")
 			}
 
@@ -169,10 +169,27 @@ func main() {
 					fmt.Print("*")
 				}
 			}
+			fmt.Println()
+		}
 
-			// for j := 0; j >= nu ;j++ {
-			// 	fmt.Print(" ")
-			// }
+		for i := 0; i <= num-2; i++ {
+			for j := 0; j < i+1; j++ {
+				fmt.Print(" ")
+			}
+
+			for j := i; j == i; j++ {
+				fmt.Print("*")
+			}
+
+			for j := num; j > ((2 * i) - 1); j-- { // Formula to generate the odd number (2 * i) + 1
+				fmt.Print("+")
+			}
+
+			if i != num-2 {
+				for j := i; j == i; j++ {
+					fmt.Print("*")
+				}
+			}
 
 			fmt.Println()
 		}
