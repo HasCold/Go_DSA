@@ -34,6 +34,15 @@ func binaryToDec(binaryNum int) {
 	fmt.Printf("The Decimal Number System After Conversion is %v \n", ans)
 }
 
+func isVowel(userInput string) {
+	var vowels = "aeiouAEIOU"
+	for _, inp := range userInput {
+		if strings.Contains(vowels, string(inp)) {
+			fmt.Println("The vowels contain :- ", string(inp))
+		}
+	}
+}
+
 func main() {
 	fmt.Println("Enter the Binary Number (only 0s and 1s) for the conversion in Decimal Number System :- ")
 
@@ -42,6 +51,8 @@ func main() {
 
 	input, _ := reader.ReadString('\n')
 	trimInput := strings.TrimSpace(input)
+
+	isVowel(input)
 
 	// strings.Map() is a powerful function that applies a given function (mapper) to each character (rune) in a string and returns a new string with the transformed characters.
 	binaryStr := strings.Map(func(r rune) rune {
