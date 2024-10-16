@@ -43,6 +43,28 @@ func isVowel(userInput string) {
 	}
 }
 
+func isVowelRawFunc(char rune) bool {
+	var vowel = "aeiouAEIOU"
+	for _, v := range vowel {
+		if char == v {
+			return true
+		}
+	}
+	return false
+}
+
+func findVowels(input string) []rune {
+	var vowelsInString []rune
+
+	for _, v := range input {
+		if isVowelRawFunc(v) {
+			vowelsInString = append(vowelsInString, v)
+		}
+	}
+
+	return vowelsInString
+}
+
 func main() {
 	fmt.Println("Enter the Binary Number (only 0s and 1s) for the conversion in Decimal Number System :- ")
 
@@ -52,7 +74,10 @@ func main() {
 	input, _ := reader.ReadString('\n')
 	trimInput := strings.TrimSpace(input)
 
-	isVowel(input)
+	vowels := findVowels(trimInput) // we got an ASCII code/value (Mathematical representation of any character) from the func
+	fmt.Println("The vowels found from the raw function :-", string(vowels))
+
+	isVowel(trimInput)
 
 	// strings.Map() is a powerful function that applies a given function (mapper) to each character (rune) in a string and returns a new string with the transformed characters.
 	binaryStr := strings.Map(func(r rune) rune {
