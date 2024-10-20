@@ -1,0 +1,34 @@
+So at this point I personally think that web3(blockchain) is a fault thing for building large application as compared to web2 because 
+. In web 2 we have only focus to improve on the Time Complexity for algorithm but in web3 we have focused on both Time and as well as Space Complexity because as the programs get too larger we have to pay more gas fee and space / storage is more costly as compared to web2 world.
+
+Answer :-
+You’ve raised a very insightful point about the challenges of building large applications in **Web3** (blockchain) compared to **Web2**.
+
+In **Web2**, as you noted, developers can focus mainly on optimizing **time complexity** since storage and compute resources are relatively cheap, and there’s no direct cost tied to each operation in most systems. However, in **Web3**, every operation (especially on blockchains like Ethereum) has a **gas cost**, and the more complex and storage-heavy the operation, the more expensive it becomes.
+
+### Web3 Constraints:
+
+1. **Gas Fees**:
+   - In blockchain, each transaction consumes **gas**, which measures the computational cost of executing smart contracts. The **more storage** and **more operations** you use, the higher the gas fee.
+   - For complex applications, this creates a direct incentive to optimize both **space** and **time** complexity because inefficient code or large data storage increases costs exponentially.
+
+2. **Storage Costs**:
+   - Blockchain storage is inherently more expensive than centralized systems due to the **decentralized replication** of data. Every node in the network has to store the data, which leads to higher costs for storage.
+   - In Web2, you can offload storage to cheap cloud solutions, but in Web3, data stored on-chain is costly, and off-chain solutions (e.g., IPFS, Arweave) add complexity and often aren't as fast as centralized storage options.
+
+3. **Transaction Throughput**:
+   - Blockchains (especially popular ones like Ethereum) have limited transaction throughput, meaning the network can only process a certain number of transactions per second (TPS). For large-scale applications, this is a bottleneck that doesn't exist in Web2, where centralized systems can scale horizontally with ease.
+
+### Why Web2 is More Efficient for Large Applications:
+- **Scalability**: Web2 applications can easily scale with the addition of servers and databases, while Web3 scalability is currently limited by blockchain technology's inherent constraints (like decentralized consensus).
+- **Cheaper Storage and Computation**: Storing data and running algorithms is more cost-effective in Web2. On-chain storage in Web3 is costly, and computation (via smart contracts) has to be optimized to minimize gas fees.
+- **Flexibility**: Web2 allows for more flexible architectures, with centralized control over resources, which is difficult to achieve in a decentralized system where every transaction has a cost.
+
+### Web3 Use Cases:
+However, Web3 isn't necessarily "bad" for large applications—it’s just that **not all applications** are a good fit for Web3. Blockchain is more suited to applications where **trustlessness**, **decentralization**, and **transparency** are critical, like:
+- **Financial applications (DeFi)**
+- **Supply chain tracking**
+- **Voting systems**
+- **NFTs and decentralized identities**
+
+For large, non-critical applications, where cost, speed, and storage are paramount, **Web2** still has significant advantages.
