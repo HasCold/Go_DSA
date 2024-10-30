@@ -56,7 +56,34 @@ func optimizeApproach(arr []int) []int { // O(2n)  becomes equal to O(n) Time Co
 }
 
 // More Optimal Approach  -->> DNF Algo (Dutch National Flag Algorithm)
+
+// Approach :-
+// 0 	  l-1 	l	  m-1   m				   h	h+1	  n-1
+// <- 0000 ->  <- 1111 ->  <- unsorted elements ->  <- 222 ->
+// We are using three poniter approach : low, mid and high
+
 func dnfAlgo(arr []int) []int { // O(n)  Time Complexity and O(1) Space Complexity
+
+	low := 0
+	mid := 0
+	high := len(arr) - 1
+
+	//  l
+	// [2,0,2,1,1,0]
+	//  m		  h
+
+	for mid <= high {
+		if arr[mid] == 0 { // Condition for 0's
+			arr[low], arr[mid] = arr[mid], arr[low]
+			low++
+			mid++
+		} else if arr[mid] == 1 { // Condition for 1's
+			mid++
+		} else { // Condition for 2's
+			arr[high], arr[mid] = arr[mid], arr[high]
+			high--
+		}
+	}
 
 	return arr
 }
@@ -71,5 +98,5 @@ func main() {
 	fmt.Println("The optimized approach for 0s, 1s and 2s :- ", optimizeApproach(arr2))
 
 	arr3 := []int{2, 0, 2, 1, 1, 0, 1, 2, 0, 0}
-	fmt.Println("The optimized approach for 0s, 1s and 2s :- ", dnfAlgo(arr3))
+	fmt.Println("The optimal approach for 0s, 1s and 2s :- ", dnfAlgo(arr3))
 }
