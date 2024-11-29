@@ -37,8 +37,15 @@ func gcdRec(a, b int) int { // Recursive Approach
 	return gcdRec(b, a%b)
 }
 
+func lcm(a, b int) int {
+	gcd := gcdRec(a, b)
+	return (a * b) / gcd
+}
+
 func main() {
-	a, b := 20, 2
+	a, b := 20, 28
+
+	fmt.Println("The LCM", lcm(a, b))
 
 	fmt.Println(euclidAlgo(a, b))
 	fmt.Println(gcdRec(a, b))
