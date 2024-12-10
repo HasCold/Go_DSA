@@ -1,0 +1,86 @@
+The concept of **hashing** involves mapping data to a fixed-size value (hash code) using a **hash function**, which enables fast lookups, insertions, and deletions. In programming, **sets** and **maps** are data structures that heavily rely on hashing for their efficient operations. Let's break it down:
+
+---
+
+### **Hashing Basics**
+- **Hash Function:** A function that takes an input (like a key) and produces a fixed-size hash value (typically an integer). The hash value determines the position of the data in a hash table.
+  - Example: `hash("apple") -> 42`
+
+- **Hash Table:** A data structure that stores data in buckets or slots based on the hash value of the key.
+
+---
+
+### **Role of Sets and Maps in Hashing**
+#### 1. **Set**
+- A **set** is a collection of unique elements, and it often uses a hash table for storage.
+- **Purpose of Hashing in Sets:**  
+  - To ensure that elements are unique.
+  - To enable constant-time operations for insert, delete, and search.
+
+#### Example: Using Hashing in a Set
+```go
+package main
+
+import "fmt"
+
+func main() {
+    set := map[string]struct{}{} // A set-like structure using a map
+    set["apple"] = struct{}{}    // Add an element
+    set["banana"] = struct{}{}
+
+    // Check if "apple" is in the set
+    if _, exists := set["apple"]; exists {
+        fmt.Println("apple exists in the set")
+    }
+}
+```
+
+- **How Hashing Helps:** When checking if "apple" exists in the set, the hash function computes the hash value of "apple" to find its location quickly.
+
+---
+
+#### 2. **Map**
+- A **map** (or dictionary) is a key-value store, where each key is unique, and values are accessed using keys.
+- **Purpose of Hashing in Maps:**  
+  - To locate values quickly using their keys.
+  - To ensure unique keys.
+
+#### Example: Using Hashing in a Map
+```go
+package main
+
+import "fmt"
+
+func main() {
+    mapExample := make(map[string]int)
+    mapExample["apple"] = 1
+    mapExample["banana"] = 2
+
+    // Access value by key
+    fmt.Println("Value for 'apple':", mapExample["apple"])
+}
+```
+
+- **How Hashing Helps:** When accessing `mapExample["apple"]`, the hash function computes the hash of "apple" to determine its storage location, allowing O(1) access time.
+
+---
+
+### **Key Concepts**
+1. **Collision:**  
+   When two keys hash to the same value, it's called a collision.  
+   - **Handling Collisions:** Most hash-based structures handle collisions using techniques like **chaining** (storing multiple items in the same bucket) or **open addressing** (probing for the next available slot).
+
+2. **Load Factor:**  
+   The ratio of the number of elements to the number of buckets in the hash table. A higher load factor can increase collisions, degrading performance.
+
+3. **Rehashing:**  
+   When the hash table exceeds a certain load factor, it resizes and rehashes all elements to reduce collisions and maintain efficiency.
+
+---
+
+### **Why Use Hashing in Sets and Maps?**
+- **Efficiency:** Operations like lookup, insertion, and deletion are typically O(1).
+- **Uniqueness:** Hashing ensures that keys or elements are unique (depending on the structure).
+- **Scalability:** Can handle large datasets efficiently.
+
+Hashing in sets and maps is a fundamental concept in computer science, making these structures highly efficient for many real-world applications.
