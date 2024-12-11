@@ -2,26 +2,42 @@ package main
 
 import "fmt"
 
-func missingAndRpeat(mat [][]int) (int, int) {
+// [1 to n^2]  ==>>  n^2 x (n^2 + 1)/2
+
+// expSum + a - b = ActualSum
+// b = expSum + a - ActualSum
+// expectedSum = n^2 x (n^2 + 1) / 2  =>  (9 x 10) / 2 => 45
+
+func missingAndRpeat(mat [][]int) []int { // Time Complexity O(n^2)
 	m := map[int]int{} // Hashing DS
 	var a int          // For repeating values
 	var b int          // For missing values
+	n := len(mat)
+
+	ans := []int{}
+	actualSum := 0
 
 	for i := 0; i < len(mat); i++ {
 		for j := 0; j < len(mat); j++ {
 			num := mat[i][j]
 			_, exist := m[num]
 
+			actualSum += mat[i][j]
+
 			if exist {
 				a = num
-				break
+				ans = append(ans, a)
 			}
 
 			m[num] = j
 		}
 	}
 
-	return a, b
+	expectedSum := (n * n) * (n*n + 1) / 2
+	b = expectedSum + a - actualSum
+	ans = append(ans, b)
+
+	return ans
 }
 
 func main() {
@@ -31,6 +47,6 @@ func main() {
 	// a => repeat value in grid
 	// b => missing value in grid
 
-	repeat, miss := missingAndRpeat(grid)
-	fmt.Println("The repeating and missing values are :- ", repeat, miss)
+	vec := missingAndRpeat(grid)
+	fmt.Println("The repeating and missing values are :- ", vec)
 }
