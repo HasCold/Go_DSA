@@ -1,0 +1,107 @@
+The main difference between a **HashMap (Map)** and a **HashTable (Set)** lies in their purpose, structure, and usage:
+
+---
+
+### **HashMap (Map)**
+A **HashMap** is a data structure used to store **key-value pairs**.
+
+#### Key Features:
+1. **Key-Value Storage**: 
+   - Maps each unique key to a specific value.
+   - Example: `{1: "Apple", 2: "Banana"}`
+
+2. **Allows Duplicate Values**: 
+   - While keys must be unique, values can be duplicated.
+
+3. **Use Cases**: 
+   - Lookup tables, dictionaries, or where you need a mapping between two entities.
+
+4. **Examples**:
+   - Java: `HashMap`
+   - Python: `dict`
+   - Go: `map`
+
+#### Example in Go:
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fruitMap := map[int]string{
+		1: "Apple",
+		2: "Banana",
+		3: "Cherry",
+	}
+
+	// Accessing values using keys
+	fmt.Println(fruitMap[1]) // Output: Apple
+}
+```
+
+---
+
+### **HashTable (Set)**
+A **HashTable**, when used as a **Set**, is a data structure that stores **unique elements** without any associated value.
+
+#### Key Features:
+1. **Unique Elements Only**: 
+   - A set ensures that all elements are distinct.
+   - Example: `{1, 2, 3}`
+
+2. **No Key-Value Relationship**: 
+   - Elements are stored as-is, not as key-value pairs.
+
+3. **Use Cases**: 
+   - To check membership or ensure uniqueness in a collection.
+
+4. **Examples**:
+   - Java: `HashSet`
+   - Python: `set`
+   - Go: No native set, but a `map[T]struct{}` can be used.
+
+#### Example in Go:
+```go
+package main
+
+import "fmt"
+
+func main() {
+	// Implementing a set using map[int]struct{}
+	set := make(map[int]struct{})
+
+	// Adding elements
+	set[1] = struct{}{}
+	set[2] = struct{}{}
+	set[3] = struct{}{}
+	set[2] = struct{}{} // Duplicate, won't add again
+
+	// Checking membership
+	_, exists := set[2]
+	fmt.Println("Does 2 exist in the set?", exists) // Output: true
+
+	// Iterating over the set
+	for key := range set {
+		fmt.Println(key)
+	}
+}
+```
+
+---
+
+### **Comparison Table**
+
+| **Feature**           | **HashMap (Map)**                         | **HashTable (Set)**                        |
+|------------------------|-------------------------------------------|--------------------------------------------|
+| **Data Storage**       | Key-Value pairs                          | Unique elements                            |
+| **Key Uniqueness**     | Keys must be unique                      | All elements must be unique                |
+| **Value Duplication**  | Duplicate values allowed                 | Not applicable                             |
+| **Purpose**            | Associating data (key to value)          | Ensuring uniqueness and membership checks  |
+| **Example Use Case**   | A phonebook (name to phone number)        | Tracking visited cities in a trip          |
+| **Go Implementation** | `map[key]value`                          | `map[element]struct{}`                     |
+
+---
+
+### **Summary**
+- Use a **HashMap (Map)** when you need to associate a **key** with a **value**.
+- Use a **HashTable (Set)** when you only need to ensure uniqueness or check membership of elements without any association. In Go, sets can be emulated using `map[element]struct{}`.
