@@ -17,6 +17,7 @@ import (
 
 // 1 * 2^2(4) + 0 * 2^1(2) + 1 * 2^0(1) = 5
 
+// basically we have to go towards the Decimal Num System so in this case the divisor will be 10
 func binaryToDec(binaryNum int) {
 
 	pow := 1 // 2^0(1) if * 2 = 2^1(2) if * 2 = 2^2(4)
